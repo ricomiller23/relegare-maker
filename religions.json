@@ -21,7 +21,15 @@
         "III": "Requirements of Choice: Analysis of Agency and Maturity in sacramental participation.",
         "IV": "Shadows of Grace: Managing pride and ritualism; tracking social media's impact on silence.",
         "V": "Sacred Space: The Gothic Cathedral - Verticality, Light (Stained Glass), and Awe."
-      }
+      },
+      "quiz": [
+        { "q": "Who is considered the first Pope in Catholic tradition?", "options": ["St. Paul", "St. Peter", "St. Augustine", "St. Benedict"], "a": 1 },
+        { "q": "What was the result of the Council of Nicaea in 325 AD?", "options": ["The Great Schism", "The Protestant Reformation", "Formalization of the Trinity", "The Crusades"], "a": 2 }
+      ],
+      "flashcards": [
+        { "f": "Eucharist", "b": "The central sacrament of Catholicism, believed to be the body and blood of Christ." },
+        { "f": "Papal Infallibility", "b": "The doctrine that the Pope is preserved from error when speaking ex cathedra on faith or morals." }
+      ]
     }
   },
   {
@@ -46,7 +54,15 @@
         "III": "Requirements of Choice: Evaluating decisions through the lens of Vohu Manah (Good Mind).",
         "IV": "Shadows of Grace: Tracking reactivity to 'pollution' (dishonesty) for one week.",
         "V": "Sacred Space: Atash Behram (Fire Temple) - The architecture of the eternal flame."
-      }
+      },
+      "quiz": [
+        { "q": "Who is the supreme 'Wise Lord' in Zoroastrianism?", "options": ["Angra Mainyu", "Ahura Mazda", "Zarathustra", "Mithra"], "a": 1 },
+        { "q": "What are the three pillars of Zoroastrian ethics?", "options": ["Faith, Hope, Charity", "Good Thoughts, Good Words, Good Deeds", "Prayer, Fasting, Almsgiving", "Asha, Druj, Vohu"], "a": 1 }
+      ],
+      "flashcards": [
+        { "f": "Gathas", "b": "The most sacred portion of the Avesta, hymns composed by Zoroaster himself." },
+        { "f": "Asha", "b": "The cosmic principle of truth, order, and righteousness." }
+      ]
     }
   },
   {
@@ -71,7 +87,15 @@
         "III": "Requirements of Choice: Analysis of Agency within the concept of Divine Decree.",
         "IV": "Shadows of Grace: Tracking ego (Nafs) and anger; identifying triggers for spiritual distraction.",
         "V": "Sacred Space: The Grand Mosque - Geometric infinite patterns and the absence of icons."
-      }
+      },
+      "quiz": [
+        { "q": "What does the word 'Islam' literally mean?", "options": ["Peace", "Submission", "Prayer", "Holy"], "a": 1 },
+        { "q": "What was the 'Hijra' in 622 CE?", "options": ["Birth of the Prophet", "First Revelation", "Migration to Medina", "Conquest of Mecca"], "a": 2 }
+      ],
+      "flashcards": [
+        { "f": "Tawhid", "b": "The central doctrine of the absolute Oneness of God." },
+        { "f": "Ummah", "b": "The supra-national community of all Muslims." }
+      ]
     }
   },
   {
@@ -96,7 +120,15 @@
         "III": "Requirements of Choice: Awareness vs. Attachment in daily decision making.",
         "IV": "Shadows of Grace: Identifying 'hindrances' (greed, ill-will); tracking emotional reactivity.",
         "V": "Sacred Space: The Stupa - Symbolic architecture of the enlightened mind."
-      }
+      },
+      "quiz": [
+        { "q": "What is the primary goal of Buddhism?", "options": ["Reincarnation", "Nirvana (Cessation of Suffering)", "Worship of Gods", "Conquest of India"], "a": 1 },
+        { "q": "What does 'Anicca' mean?", "options": ["Suffering", "Self", "Impermanence", "Wisdom"], "a": 2 }
+      ],
+      "flashcards": [
+        { "f": "Four Noble Truths", "b": "The essence of Buddha's teachings: truth of suffering, its cause, its end, and the path to end it." },
+        { "f": "Sangha", "b": "The Buddhist community, specifically the monastic order." }
+      ]
     }
   },
   {
@@ -121,7 +153,15 @@
         "III": "Requirements of Choice: Swadharma (Individual Duty) vs. Desire-driven action.",
         "IV": "Shadows of Grace: Assessing impacts of 'Maya' (Illusion) on personal goals.",
         "V": "Sacred Space: The Gopuram (Temple Tower) - Mapping the macrocosm to the microcosm."
-      }
+      },
+      "quiz": [
+        { "q": "What is 'Moksha' in Hinduism?", "options": ["The cycle of birth and death", "Liberation from the cycle of rebirth", "A sacred ritual", "A type of yoga"], "a": 1 },
+        { "q": "Who is the Preserver in the Hindu Trinity (Trimurti)?", "options": ["Brahma", "Shiva", "Vishnu", "Ganesha"], "a": 2 }
+      ],
+      "flashcards": [
+        { "f": "Brahman", "b": "The ultimate, unchanging reality that is the ground of all existence." },
+        { "f": "Dharma", "b": "The eternal law, duty, or conduct that maintains cosmic order." }
+      ]
     }
   },
   {
@@ -146,7 +186,15 @@
         "III": "Requirements of Choice: Free will (Bechirah) within the bounds of Mitzvot.",
         "IV": "Shadows of Grace: Identifying 'Loshon Hara' (Negative Speech) patterns for a week.",
         "V": "Sacred Space: The Western Wall - A ritual return to the center of history."
-      }
+      },
+      "quiz": [
+        { "q": "What is the primary sacred text of Judaism?", "options": ["The Quran", "The New Testament", "The Torah", "The Vedas"], "a": 2 },
+        { "q": "What does 'Tikkun Olam' mean?", "options": ["Study of Law", "Repairing the World", "Chosen People", "Sabbath Rest"], "a": 1 }
+      ],
+      "flashcards": [
+        { "f": "Covenant", "b": "A sacred and binding agreement between God and the Jewish people." },
+        { "f": "Shabbat", "b": "The day of rest, from Friday evening to Saturday evening." }
+      ]
     }
   },
   {
@@ -171,7 +219,15 @@
         "III": "Requirements of Choice: Individual desire vs. the Harmony of the Great Way.",
         "IV": "Shadows of Grace: Tracking 'Kegare' (spiritual stagnation) through environment clutter.",
         "V": "Sacred Space: The Torii Gate - The boundary between the profane and the sacred."
-      }
+      },
+      "quiz": [
+        { "q": "What are 'Kami' in Shinto?", "options": ["Demons", "Spiritual essences or deities in nature", "Priests", "Sacred books"], "a": 1 },
+        { "q": "What is the primary focus of Shinto rituals?", "options": ["Salvation from sin", "Purity and Harmony", "World Conquest", "Individual enlightenment"], "a": 1 }
+      ],
+      "flashcards": [
+        { "f": "Torii", "b": "A traditional Japanese gate most commonly found at the entrance of a Shinto shrine." },
+        { "f": "Harae", "b": "Ritual purification ceremonies." }
+      ]
     }
   },
   {
@@ -196,7 +252,15 @@
         "III": "Requirements of Choice: Assessing agency in the context of Hukam (Divine Will).",
         "IV": "Shadows of Grace: Tracking Five Vices (Ego, Anger, Greed, Attachment, Lust).",
         "V": "Sacred Space: The Golden Temple - Four doors open to all directions/castes."
-      }
+      },
+      "quiz": [
+        { "q": "Who was the first Guru of Sikhism?", "options": ["Guru Gobind Singh", "Guru Nanak", "Guru Arjan", "Guru Tegh Bahadur"], "a": 1 },
+        { "q": "What is 'Langar'?", "options": ["A sacred sword", "A communal kitchen serving free meals to all", "A type of prayer", "The Sikh holy book"], "a": 1 }
+      ],
+      "flashcards": [
+        { "f": "Ik Onkar", "b": "The symbol representing the Oneness of God." },
+        { "f": "Seva", "b": "Selfless service to the community." }
+      ]
     }
   }
 ]

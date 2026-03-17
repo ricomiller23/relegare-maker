@@ -2,10 +2,13 @@
  * Relegare Maker - Main Logic
  */
 
+import { Generator } from './generator.js';
+
 // State
 let selectedReligions = [null, null, null];
 let activeSlot = null;
 let religions = [];
+let masterTemplate = '';
 
 // Fetch real database
 async function loadReligions() {
@@ -13,6 +16,10 @@ async function loadReligions() {
         const response = await fetch('./religions.json');
         religions = await response.json();
         renderReligionList(religions);
+
+        // Load template
+        const tplResponse = await fetch('./master_template.html');
+        masterTemplate = await tplResponse.text();
     } catch (err) {
         console.error('Failed to load religions:', err);
     }
@@ -53,10 +60,16 @@ function setupEventListeners() {
     });
 
     generateBtn.addEventListener('click', () => {
-        if (!generateBtn.classList.contains('disabled')) {
-            alert('Generation process starting... (Story #4)');
-        }
-    });
+    if (selectedReligions.includes(null)) return;
+
+    const generator = new Generator(masterTemplate);
+    const generatedHtml = generator.generate(selectedReligions);
+
+    // For Story #3, we'll show a preview in a new window
+    const previewWindow = window.open('', '_blank');
+    previewWindow.document.write(generatedHtml);
+    previewWindow.document.close();
+});
 }
 
 function openModal() {

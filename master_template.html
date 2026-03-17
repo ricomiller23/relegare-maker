@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>THE RELIGARE - A Telescope for Belief Systems</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-primary: #F8FAFC;
+      --bg-glass: rgba(255, 255, 255, 0.45);
+      --bg-glass-heavy: rgba(255, 255, 255, 0.7);
+      --accent-primary: #1A1A1A;
+      --accent-glow: rgba(0, 0, 0, 0.05);
+      --text-primary: #1A1A1A;
+      --text-muted: #64748B;
+      --text-accent: #3B82F6;
+      --border-glass: rgba(255, 255, 255, 0.6);
+      --blur-radius: 40px;
+      --radius-lg: 32px;
+      --radius-pill: 50px;
+      --shadow-soft: 0 10px 30px -5px rgba(0, 0, 0, 0.04);
+      --accent-blue: #3B82F6;
+      --accent-fire: #E67E22;
+      --accent-rose: #E74C3C;
+      --accent-gold: #D4AF37;
+    }
+
+    /* Core Styles from Original */
+    @keyframes blob {
+      0% { transform: translate(0, 0) scale(1); }
+      33% { transform: translate(30px, -50px) scale(1.1); }
+      66% { transform: translate(-20px, 20px) scale(0.9); }
+      100% { transform: translate(0, 0) scale(1); }
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1, h2, h3, h4, h5, .cinzel { font-family: 'Cinzel', serif; font-weight: 600; }
+    .mono { font-family: 'JetBrains Mono', monospace; }
+
+    #app { position: relative; z-index: 10; min-height: 100vh; display: flex; flex-direction: column; }
+
+    canvas#starfield { position: fixed; top: 0; left: 0; z-index: -1; background: #000; }
+
+    header {
+      position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
+      width: 90%; max-width: 1200px; background: var(--bg-glass);
+      backdrop-filter: blur(var(--blur-radius)); -webkit-backdrop-filter: blur(var(--blur-radius));
+      border: 1px solid var(--border-glass); border-radius: var(--radius-pill);
+      z-index: 100; padding: 12px 30px; display: flex; justify-content: space-between; align-items: center;
+      box-shadow: var(--shadow-soft);
+    }
+
+    header .logo { font-family: 'Cinzel', serif; color: var(--accent-primary); font-size: 20px; font-weight: 700; cursor: pointer; }
+    header nav { display: flex; gap: 15px; }
+    header nav button {
+      background: none; border: none; color: var(--text-muted); font-family: 'Inter', sans-serif;
+      font-size: 14px; font-weight: 600; cursor: pointer; transition: all 0.3s;
+      padding: 8px 16px; border-radius: var(--radius-pill);
+    }
+    header nav button:hover { color: var(--text-primary); background: rgba(0, 0, 0, 0.05); }
+    header nav button.active { color: #fff; background: var(--accent-primary); }
+
+    .progress-stars { display: flex; gap: 5px; color: var(--text-muted); align-items: center; }
+    .progress-stars .star.earned { color: var(--accent-gold); }
+
+    main { flex: 1; padding-top: 80px; position: relative; z-index: 10; display: flex; flex-direction: column; }
+    .screen { display: none; width: 100%; max-width: 1000px; margin: 0 auto; padding: 40px 20px; animation: fadeIn 300ms ease-in-out; }
+    .screen.active { display: block; }
+
+    .text-center { text-align: center; }
+    .text-gold { color: var(--accent-gold); }
+    .text-muted { color: var(--text-muted); }
+    .heading-48 { font-size: 48px; margin-bottom: 10px; }
+    .heading-36 { font-size: 36px; margin-bottom: 15px; }
+    .heading-28 { font-size: 28px; margin-bottom: 20px; }
+    .btn-gold {
+      background: var(--accent-primary); border: none; color: #fff; padding: 14px 28px;
+      font-family: 'Inter', sans-serif; font-weight: 600; cursor: pointer; border-radius: var(--radius-pill);
+      transition: all 300ms; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+    .btn-gold:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15); }
+    
+    .card-grid { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; margin-top: 40px; }
+    .card {
+      background: var(--bg-glass); backdrop-filter: blur(var(--blur-radius)); border: 1px solid var(--border-glass);
+      border-radius: var(--radius-lg); padding: 24px; width: 250px; cursor: pointer; transition: all 400ms;
+      box-shadow: var(--shadow-soft);
+    }
+    .card:hover { transform: translateY(-8px); background: rgba(255, 255, 255, 0.6); }
+
+    .module-layout { display: flex; gap: 30px; }
+    .module-sidebar { width: 250px; flex-shrink: 0; position: sticky; top: 120px; height: max-content; background: var(--bg-glass); padding: 24px; border-radius: var(--radius-lg); border: 1px solid var(--border-glass); }
+    .module-sidebar nav button { display: block; width: 100%; text-align: left; background: none; border: none; padding: 10px 14px; color: var(--text-muted); cursor: pointer; border-radius: 12px; font-weight: 600; }
+    .module-sidebar nav button.active { background: var(--accent-primary); color: #fff; }
+    .module-content { flex: 1; }
+    .module-section { padding-top: 40px; margin-bottom: 40px; }
+
+    .accordion-item { border: 1px solid var(--border-glass); background: var(--bg-glass); margin-bottom: 15px; border-radius: 20px; overflow: hidden; }
+    .accordion-header { padding: 18px 24px; cursor: pointer; display: flex; justify-content: space-between; width: 100%; background: none; border: none; font-weight: 700; text-align: left; }
+    .accordion-content { padding: 0 24px; max-height: 0; overflow: hidden; transition: all 400ms; }
+    .accordion-item.open .accordion-content { padding: 20px 24px; max-height: 1000px; border-top: 1px solid var(--border-glass); }
+
+    .flip-card { perspective: 1000px; height: 200px; cursor: pointer; }
+    .flip-card-inner { position: relative; width: 100%; height: 100%; transition: transform 0.4s; transform-style: preserve-3d; }
+    .flip-card.flipped .flip-card-inner { transform: rotateY(180deg); }
+    .flip-card-front, .flip-card-back { position: absolute; width: 100%; height: 100%; backface-visibility: hidden; display: flex; align-items: center; justify-content: center; padding: 24px; border-radius: var(--radius-lg); border: 1px solid var(--border-glass); }
+    .flip-card-back { transform: rotateY(180deg); background: var(--bg-glass-heavy); }
+
+    .compare-table { width: 100%; border-collapse: collapse; }
+    .compare-table th, .compare-table td { padding: 20px; border-bottom: 1px solid var(--border-glass); text-align: left; }
+
+    #telescope-btn { position: fixed; bottom: 20px; right: 20px; width: 50px; height: 50px; border-radius: 50%; background: var(--accent-gold); border: none; cursor: pointer; z-index: 999; font-size: 24px; }
+    .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); display: none; justify-content: center; align-items: center; z-index: 1000; }
+    .modal-overlay.active { display: flex; }
+    .modal-content { background: #fff; padding: 30px; border-radius: 8px; max-width: 500px; width: 90%; position: relative; }
+    .modal-close { position: absolute; top: 10px; right: 15px; border: none; background: none; font-size: 20px; cursor: pointer; }
+
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+  </style>
+</head>
+<body>
+<canvas id="starfield"></canvas>
+
+<header>
+  <div class="logo" onclick="app.showScreen('screen0')">🔭 THE RELIGARE</div>
+  <nav>
+    <button id="nav-btn-screen0" onclick="app.showScreen('screen0')">Home</button>
+    <button id="nav-btn-screen2" onclick="app.showScreen('screen2')">Religions</button>
+    <button id="nav-btn-screen4" onclick="app.showScreen('screen4')">Compare</button>
+    <button id="nav-btn-screen7" onclick="app.showScreen('screen7')">Quiz</button>
+    <button id="nav-btn-screen9" onclick="app.showScreen('screen9')">Journal</button>
+    <div class="progress-stars" id="nav-stars"></div>
+  </nav>
+</header>
+
+<main id="app">
+  <!-- Screen 0: Intro -->
+  <div id="screen0" class="screen text-center active" style="display: flex; flex-direction: column; justify-content: center; min-height: 80vh;">
+    <div class="heading-48 text-gold">THE RELIGARE</div>
+    <div class="heading-22 text-muted">A Telescope for Belief Systems</div>
+    
+    <div class="max-w-600" style="margin: 40px auto; max-width: 600px;">
+      In 1610, Galileo built a wooden tube and said: everything you believe is wrong — and I can prove it. Just look.<br><br>
+      The Religare is your telescope. It has no opinions. No answers. It is only a framework for gathering facts — a tool that lets you see past the cultural veil into the true nature of things.
+    </div>
+
+    <div class="card-grid">
+      <div class="card" onclick="app.showScreen('screen3a')" style="border-color: {{RELIGION_A_COLOR}};">
+        <span class="card-icon" style="color: {{RELIGION_A_COLOR}};">{{RELIGION_A_ICON}}</span>
+        <div class="card-title">{{RELIGION_A_NAME}}</div>
+        <div class="text-muted">The One I Know</div>
+      </div>
+      <div class="card" onclick="app.showScreen('screen3b')" style="border-color: {{RELIGION_B_COLOR}};">
+        <span class="card-icon" style="color: {{RELIGION_B_COLOR}};">{{RELIGION_B_ICON}}</span>
+        <div class="card-title">{{RELIGION_B_NAME}}</div>
+        <div class="text-muted">The One I Know Nothing About</div>
+      </div>
+      <div class="card" onclick="app.showScreen('screen3c')" style="border-color: {{RELIGION_C_COLOR}};">
+        <span class="card-icon" style="color: {{RELIGION_C_COLOR}};">{{RELIGION_C_ICON}}</span>
+        <div class="card-title">{{RELIGION_C_NAME}}</div>
+        <div class="text-muted">The One I'm Curious About</div>
+      </div>
+    </div>
+
+    <button class="btn-gold" style="margin-top: 40px;" onclick="app.showScreen('screen1')">BEGIN THE STUDY →</button>
+  </div>
+
+  <!-- Screen 1: Tutorial (Simplified) -->
+  <div id="screen1" class="screen">
+    <div class="heading-36 text-center text-gold">THE RELIGARE — How to Use This Tool</div>
+    <p>The word Religare comes from Latin meaning 'to bind back' — the same root word as religion itself.</p>
+    <p>We look at what a religion DOES, not what it CLAIMS. We never take a religion out of its TIME PERIOD.</p>
+    <div class="text-center mt-10"><button class="btn-gold" onclick="app.showScreen('screen2'); app.markSectionComplete('screen1');">ENTER THE STUDY →</button></div>
+  </div>
+
+  <!-- Screen 2: Hub -->
+  <div id="screen2" class="screen">
+    <div class="heading-36 text-center text-gold">CHOOSE YOUR LENS</div>
+    <div class="card-grid">
+      <div class="card" onclick="app.showScreen('screen3a')">
+        <span class="card-icon">{{RELIGION_A_ICON}}</span>
+        <div class="card-title">{{RELIGION_A_NAME}}</div>
+        <button class="btn-gold" style="width: 100%; margin-top: 15px;">STUDY →</button>
+      </div>
+      <div class="card" onclick="app.showScreen('screen3b')">
+        <span class="card-icon">{{RELIGION_B_ICON}}</span>
+        <div class="card-title">{{RELIGION_B_NAME}}</div>
+        <button class="btn-gold" style="width: 100%; margin-top: 15px;">STUDY →</button>
+      </div>
+      <div class="card" onclick="app.showScreen('screen3c')">
+        <span class="card-icon">{{RELIGION_C_ICON}}</span>
+        <div class="card-title">{{RELIGION_C_NAME}}</div>
+        <button class="btn-gold" style="width: 100%; margin-top: 15px;">STUDY →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Screen 3a: Religion A -->
+  <div id="screen3a" class="screen">
+    <div class="heading-36" style="color: {{RELIGION_A_COLOR}};">{{RELIGION_A_ICON}} {{RELIGION_A_NAME}}</div>
+    <div class="module-layout">
+      <div class="module-sidebar">
+        <nav>
+          <button onclick="document.getElementById('a-field-1').scrollIntoView()">Time & Place</button>
+          <button onclick="document.getElementById('a-field-2').scrollIntoView()">Founder</button>
+          <button onclick="document.getElementById('a-field-3').scrollIntoView()">Sacred Text</button>
+          <button onclick="document.getElementById('a-field-4').scrollIntoView()">Origin Culture</button>
+          <button onclick="document.getElementById('a-field-5').scrollIntoView()">Creation Myth</button>
+          <button onclick="document.getElementById('a-field-6').scrollIntoView()">Core Beliefs</button>
+          <button onclick="document.getElementById('a-field-7').scrollIntoView()">Functional Purpose</button>
+          <button onclick="document.getElementById('a-field-8').scrollIntoView()">Power Structure</button>
+          <button onclick="document.getElementById('a-field-9').scrollIntoView()">Lineage</button>
+          <button onclick="document.getElementById('a-field-10').scrollIntoView()">Legacy</button>
+          <button onclick="document.getElementById('a-practicum').scrollIntoView()" style="border-top:1px solid #ccc; margin-top:10px;">Practicum</button>
+        </nav>
+      </div>
+      <div class="module-content">
+        <div id="a-field-1" class="module-section"><h3>🕰️ TIME & PLACE</h3><p>{{RELIGION_A_DATA_TIME_PLACE}}</p></div>
+        <div id="a-field-2" class="module-section"><h3>👤 FOUNDER</h3><p>{{RELIGION_A_DATA_FOUNDER}}</p></div>
+        <div id="a-field-3" class="module-section"><h3>📖 SACRED TEXT</h3><p>{{RELIGION_A_DATA_SACRED_TEXT}}</p></div>
+        <div id="a-field-4" class="module-section"><h3>🌍 ORIGIN CULTURE</h3><p>{{RELIGION_A_DATA_ORIGIN_CULTURE}}</p></div>
+        <div id="a-field-5" class="module-section"><h3>🌌 CREATION MYTH</h3><p>{{RELIGION_A_DATA_CREATION_MYTH}}</p></div>
+        <div id="a-field-6" class="module-section"><h3>⚖️ CORE BELIEFS</h3><p>{{RELIGION_A_DATA_CORE_BELIEFS}}</p></div>
+        <div id="a-field-7" class="module-section"><h3>🎯 FUNCTIONAL PURPOSE</h3><p>{{RELIGION_A_DATA_FUNCTIONAL_PURPOSE}}</p></div>
+        <div id="a-field-8" class="module-section"><h3>💰 POWER STRUCTURE</h3><p>{{RELIGION_A_DATA_POWER_STRUCTURE}}</p></div>
+        <div id="a-field-9" class="module-section"><h3>🔗 RELIGIOUS LINEAGE</h3><p>{{RELIGION_A_DATA_RELIGIOUS_LINEAGE}}</p></div>
+        <div id="a-field-10" class="module-section"><h3>🌊 RELEVANCE & LEGACY</h3><p>{{RELIGION_A_DATA_RELEVANCE_LEGACY}}</p></div>
+        <div id="a-practicum" class="module-section">
+          <h3>🛠️ PRACTICUM</h3>
+          <div class="accordion">
+            <div class="accordion-item"><button class="accordion-header" onclick="app.toggleAccordion(this)">I. INHERITED FRAMEWORKS</button><div class="accordion-content">{{RELIGION_A_PRACTICUM_I}}</div></div>
+            <div class="accordion-item"><button class="accordion-header" onclick="app.toggleAccordion(this)">II. UNCOMMON SENSE PILOT</button><div class="accordion-content">{{RELIGION_A_PRACTICUM_II}}</div></div>
+            <div class="accordion-item"><button class="accordion-header" onclick="app.toggleAccordion(this)">III. REQUIREMENTS OF CHOICE</button><div class="accordion-content">{{RELIGION_A_PRACTICUM_III}}</div></div>
+            <div class="accordion-item"><button class="accordion-header" onclick="app.toggleAccordion(this)">IV. SHADOWS OF GRACE</button><div class="accordion-content">{{RELIGION_A_PRACTICUM_IV}}</div></div>
+            <div class="accordion-item"><button class="accordion-header" onclick="app.toggleAccordion(this)">V. SACRED SPACE</button><div class="accordion-content">{{RELIGION_A_PRACTICUM_V}}</div></div>
+          </div>
+        </div>
+        <button class="btn-gold" onclick="app.showScreen('screen2'); app.markSectionComplete('screen3a');">DONE WITH {{RELIGION_A_NAME}}</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Screen 3b: Religion B (Same structure) -->
+  <div id="screen3b" class="screen">
+    <div class="heading-36" style="color: {{RELIGION_B_COLOR}};">{{RELIGION_B_ICON}} {{RELIGION_B_NAME}}</div>
+    <div class="module-layout">
+      <div class="module-sidebar"><nav><!-- Nav same as A --></nav></div>
+      <div class="module-content">
+        <div id="b-field-1" class="module-section"><h3>🕰️ TIME & PLACE</h3><p>{{RELIGION_B_DATA_TIME_PLACE}}</p></div>
+        <div id="b-field-2" class="module-section"><h3>👤 FOUNDER</h3><p>{{RELIGION_B_DATA_FOUNDER}}</p></div>
+        <div id="b-field-3" class="module-section"><h3>📖 SACRED TEXT</h3><p>{{RELIGION_B_DATA_SACRED_TEXT}}</p></div>
+        <div id="b-field-4" class="module-section"><h3>🌍 ORIGIN CULTURE</h3><p>{{RELIGION_B_DATA_ORIGIN_CULTURE}}</p></div>
+        <div id="b-field-5" class="module-section"><h3>🌌 CREATION MYTH</h3><p>{{RELIGION_B_DATA_CREATION_MYTH}}</p></div>
+        <div id="b-field-6" class="module-section"><h3>⚖️ CORE BELIEFS</h3><p>{{RELIGION_B_DATA_CORE_BELIEFS}}</p></div>
+        <div id="b-field-7" class="module-section"><h3>🎯 FUNCTIONAL PURPOSE</h3><p>{{RELIGION_B_DATA_FUNCTIONAL_PURPOSE}}</p></div>
+        <div id="b-field-8" class="module-section"><h3>💰 POWER STRUCTURE</h3><p>{{RELIGION_B_DATA_POWER_STRUCTURE}}</p></div>
+        <div id="b-field-9" class="module-section"><h3>🔗 RELIGIOUS LINEAGE</h3><p>{{RELIGION_B_DATA_RELIGIOUS_LINEAGE}}</p></div>
+        <div id="b-field-10" class="module-section"><h3>🌊 RELEVANCE & LEGACY</h3><p>{{RELIGION_B_DATA_RELEVANCE_LEGACY}}</p></div>
+        <div id="b-practicum" class="module-section">
+          <h3>🛠️ PRACTICUM</h3>
+          <div class="accordion">
+            <div class="accordion-item"><button class="accordion-header" onclick="app.toggleAccordion(this)">I. INHERITED FRAMEWORKS</button><div class="accordion-content">{{RELIGION_B_PRACTICUM_I}}</div></div>
+            <div class="accordion-item"><button class="accordion-header" onclick="app.toggleAccordion(this)">II. UNCOMMON SENSE PILOT</button><div class="accordion-content">{{RELIGION_B_PRACTICUM_II}}</div></div>
+            <div class="accordion-item"><button class="accordion-header" onclick="app.toggleAccordion(this)">III. REQUIREMENTS OF CHOICE</button><div class="accordion-content">{{RELIGION_B_PRACTICUM_III}}</div></div>
+            <div class="accordion-item"><button class="accordion-header" onclick="app.toggleAccordion(this)">IV. SHADOWS OF GRACE</button><div class="accordion-content">{{RELIGION_B_PRACTICUM_IV}}</div></div>
+            <div class="accordion-item"><button class="accordion-header" onclick="app.toggleAccordion(this)">V. SACRED SPACE</button><div class="accordion-content">{{RELIGION_B_PRACTICUM_V}}</div></div>
+          </div>
+        </div>
+        <button class="btn-gold" onclick="app.showScreen('screen2'); app.markSectionComplete('screen3b');">DONE WITH {{RELIGION_B_NAME}}</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Screen 3c: Religion C (Same structure) -->
+  <div id="screen3c" class="screen">
+    <div class="heading-36" style="color: {{RELIGION_C_COLOR}};">{{RELIGION_C_ICON}} {{RELIGION_C_NAME}}</div>
+    <div class="module-layout">
+      <div class="module-sidebar"><nav><!-- Nav same as A --></nav></div>
+      <div class="module-content">
+        <div id="c-field-1" class="module-section"><h3>🕰️ TIME & PLACE</h3><p>{{RELIGION_C_DATA_TIME_PLACE}}</p></div>
+        <div id="c-field-2" class="module-section"><h3>👤 FOUNDER</h3><p>{{RELIGION_C_DATA_FOUNDER}}</p></div>
+        <div id="c-field-3" class="module-section"><h3>📖 SACRED TEXT</h3><p>{{RELIGION_C_DATA_SACRED_TEXT}}</p></div>
+        <div id="c-field-4" class="module-section"><h3>🌍 ORIGIN CULTURE</h3><p>{{RELIGION_C_DATA_ORIGIN_CULTURE}}</p></div>
+        <div id="c-field-5" class="module-section"><h3>🌌 CREATION MYTH</h3><p>{{RELIGION_C_DATA_CREATION_MYTH}}</p></div>
+        <div id="c-field-6" class="module-section"><h3>⚖️ CORE BELIEFS</h3><p>{{RELIGION_C_DATA_CORE_BELIEFS}}</p></div>
+        <div id="c-field-7" class="module-section"><h3>🎯 FUNCTIONAL PURPOSE</h3><p>{{RELIGION_C_DATA_FUNCTIONAL_PURPOSE}}</p></div>
+        <div id="c-field-8" class="module-section"><h3>💰 POWER STRUCTURE</h3><p>{{RELIGION_C_DATA_POWER_STRUCTURE}}</p></div>
+        <div id="c-field-9" class="module-section"><h3>🔗 RELIGIOUS LINEAGE</h3><p>{{RELIGION_C_DATA_RELIGIOUS_LINEAGE}}</p></div>
+        <div id="c-field-10" class="module-section"><h3>🌊 RELEVANCE & LEGACY</h3><p>{{RELIGION_C_DATA_RELEVANCE_LEGACY}}</p></div>
+        <div id="c-practicum" class="module-section">
+          <h3>🛠️ PRACTICUM</h3>
+          <div class="accordion">
+            <div class="accordion-item"><button class="accordion-header" onclick="app.toggleAccordion(this)">I. INHERITED FRAMEWORKS</button><div class="accordion-content">{{RELIGION_C_PRACTICUM_I}}</div></div>
+            <div class="accordion-item"><button class="accordion-header" onclick="app.toggleAccordion(this)">II. UNCOMMON SENSE PILOT</button><div class="accordion-content">{{RELIGION_C_PRACTICUM_II}}</div></div>
+            <div class="accordion-item"><button class="accordion-header" onclick="app.toggleAccordion(this)">III. REQUIREMENTS OF CHOICE</button><div class="accordion-content">{{RELIGION_C_PRACTICUM_III}}</div></div>
+            <div class="accordion-item"><button class="accordion-header" onclick="app.toggleAccordion(this)">IV. SHADOWS OF GRACE</button><div class="accordion-content">{{RELIGION_C_PRACTICUM_IV}}</div></div>
+            <div class="accordion-item"><button class="accordion-header" onclick="app.toggleAccordion(this)">V. SACRED SPACE</button><div class="accordion-content">{{RELIGION_C_PRACTICUM_V}}</div></div>
+          </div>
+        </div>
+        <button class="btn-gold" onclick="app.showScreen('screen2'); app.markSectionComplete('screen3c');">DONE WITH {{RELIGION_C_NAME}}</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Screen 4: Comparative Grid -->
+  <div id="screen4" class="screen">
+    <div class="heading-36 text-center text-gold">COMPARATIVE GRID</div>
+    <div class="compare-table-wrapper">
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th>FIELD</th>
+            <th>{{RELIGION_A_NAME}}</th>
+            <th>{{RELIGION_B_NAME}}</th>
+            <th>{{RELIGION_C_NAME}}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>TIME/PLACE</strong></td><td>{{RELIGION_A_DATA_TIME_PLACE}}</td><td>{{RELIGION_B_DATA_TIME_PLACE}}</td><td>{{RELIGION_C_DATA_TIME_PLACE}}</td></tr>
+          <tr><td><strong>FOUNDER</strong></td><td>{{RELIGION_A_DATA_FOUNDER}}</td><td>{{RELIGION_B_DATA_FOUNDER}}</td><td>{{RELIGION_C_DATA_FOUNDER}}</td></tr>
+          <tr><td><strong>SACRED TEXT</strong></td><td>{{RELIGION_A_DATA_SACRED_TEXT}}</td><td>{{RELIGION_B_DATA_SACRED_TEXT}}</td><td>{{RELIGION_C_DATA_SACRED_TEXT}}</td></tr>
+          <tr><td><strong>CREATION MYTH</strong></td><td>{{RELIGION_A_DATA_CREATION_MYTH}}</td><td>{{RELIGION_B_DATA_CREATION_MYTH}}</td><td>{{RELIGION_C_DATA_CREATION_MYTH}}</td></tr>
+          <tr><td><strong>CORE BELIEFS</strong></td><td>{{RELIGION_A_DATA_CORE_BELIEFS}}</td><td>{{RELIGION_B_DATA_CORE_BELIEFS}}</td><td>{{RELIGION_C_DATA_CORE_BELIEFS}}</td></tr>
+          <tr><td><strong>PURPOSE</strong></td><td>{{RELIGION_A_DATA_FUNCTIONAL_PURPOSE}}</td><td>{{RELIGION_B_DATA_FUNCTIONAL_PURPOSE}}</td><td>{{RELIGION_C_DATA_FUNCTIONAL_PURPOSE}}</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Screen 7: Quiz -->
+  <div id="screen7" class="screen">
+    <div class="heading-36 text-center text-gold">THE RELIGARE QUIZ</div>
+    <div id="quiz-intro" class="text-center">
+      <p>Test your functional understanding of these three traditions.</p>
+      <button class="btn-gold" onclick="app.startQuiz()">BEGIN QUIZ →</button>
+    </div>
+    <div id="quiz-container" style="display:none;">
+      <div id="quiz-progress" class="text-muted"></div>
+      <div id="quiz-q-container" class="card" style="width:100%; margin-top:20px;"></div>
+    </div>
+  </div>
+
+  <!-- Screen 9: Journal -->
+  <div id="screen9" class="screen">
+    <div class="heading-36 text-center text-gold">THE SCHOLAR'S JOURNAL</div>
+    <div id="journal-stats" class="text-center"></div>
+    <div id="journal-flashcards" class="card-grid"></div>
+  </div>
+</main>
+
+<script>
+  // Dynamic Data placeholder
+  const QUIZ_DATA = {{QUIZ_JSON}};
+  const FLASHCARDS_DATA = {{FLASHCARDS_JSON}};
+
+  window.app = {
+    state: { completedSections: [], quizScores: [], timeSpentSeconds: 0 },
+    init() {
+      this.initCanvas();
+      this.showScreen('screen0');
+      setInterval(() => this.state.timeSpentSeconds++, 1000);
+    },
+    showScreen(id) {
+      document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+      window.scrollTo(0, 0);
+      if(id === 'screen7') this.initQuiz();
+      if(id === 'screen9') this.renderJournal();
+    },
+    markSectionComplete(id) {
+      if(!this.state.completedSections.includes(id)) {
+        this.state.completedSections.push(id);
+        this.renderNavStars();
+      }
+    },
+    renderNavStars() {
+      const container = document.getElementById('nav-stars');
+      container.innerHTML = '★'.repeat(this.state.completedSections.length);
+    },
+    toggleAccordion(el) { el.parentElement.classList.toggle('open'); },
+    toggleFlipCard(el) { el.classList.toggle('flipped'); },
+    
+    // Quiz Logic
+    quizState: { index: 0, score: 0 },
+    initQuiz() {
+      this.quizState = { index: 0, score: 0 };
+      document.getElementById('quiz-intro').style.display = 'block';
+      document.getElementById('quiz-container').style.display = 'none';
+    },
+    startQuiz() {
+      document.getElementById('quiz-intro').style.display = 'none';
+      document.getElementById('quiz-container').style.display = 'block';
+      this.renderQuestion();
+    },
+    renderQuestion() {
+      const q = QUIZ_DATA[this.quizState.index];
+      const container = document.getElementById('quiz-q-container');
+      document.getElementById('quiz-progress').innerText = `Question ${this.quizState.index + 1} of ${QUIZ_DATA.length}`;
+      let html = `<h4>${q.q}</h4>`;
+      q.options.forEach((opt, i) => {
+        html += `<button onclick="app.answerQuiz(${i})" style="display:block; width:100%; margin:10px 0; padding:10px;">${opt}</button>`;
+      });
+      container.innerHTML = html;
+    },
+    answerQuiz(i) {
+      if(i === QUIZ_DATA[this.quizState.index].a) this.quizState.score++;
+      this.quizState.index++;
+      if(this.quizState.index < QUIZ_DATA.length) this.renderQuestion();
+      else alert(`Quiz Complete! Score: ${this.quizState.score}/${QUIZ_DATA.length}`);
+    },
+
+    renderJournal() {
+      const container = document.getElementById('journal-flashcards');
+      container.innerHTML = FLASHCARDS_DATA.map(f => `<div class="card" onclick="app.toggleFlipCard(this)"><div class="card-title">${f.f}</div><p style="font-size:12px;">${f.b}</p></div>`).join('');
+    },
+
+    initCanvas() {
+      const canvas = document.getElementById('starfield');
+      const ctx = canvas.getContext('2d');
+      canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+      const stars = Array.from({length: 100}, () => ({x: Math.random()*canvas.width, y: Math.random()*canvas.height, r: Math.random()*2}));
+      function draw() {
+        ctx.clearRect(0,0,canvas.width,canvas.height);
+        ctx.fillStyle = '#fff';
+        stars.forEach(s => { ctx.beginPath(); ctx.arc(s.x, s.y, s.r, 0, Math.PI*2); ctx.fill(); s.y -= 0.2; if(s.y<0) s.y=canvas.height; });
+        requestAnimationFrame(draw);
+      }
+      draw();
+    }
+  };
+  window.onload = () => app.init();
+</script>
+</body>
+</html>
