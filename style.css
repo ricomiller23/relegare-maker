@@ -204,9 +204,26 @@ main {
   transform: none !important;
 }
 
+@keyframes btnPulse {
+  0% { box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+  50% { box-shadow: 0 15px 30px rgba(184, 134, 11, 0.4); }
+  100% { box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+}
+
 .btn-gold:not(.disabled):hover {
-  transform: translateY(-4px);
+  transform: translateY(-4px) scale(1.02);
   box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+}
+
+#deploy-btn:not(.disabled) {
+  animation: btnPulse 3s infinite;
+}
+
+.slot-card.filled {
+  border-style: solid;
+  border-color: rgba(184, 134, 11, 0.3);
+  background: var(--bg-glass-heavy);
+  animation: fadeIn 0.5s ease;
 }
 
 /* Modal */

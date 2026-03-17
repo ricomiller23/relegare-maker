@@ -3,6 +3,6 @@ Last updated: 2026-03-17
 
 ✅ Story #1 — Selection UI & Landing Page — DONE
 ✅ Story #2 — Religious Database (JSON) — DONE
-⬜ Story #3 — Template Engine & Preview — PENDING
-⬜ Story #4 — Vercel Deployment Automation — PENDING
-⬜ Story #5 — Final QA & Performance — PENDING
+✅ Story #3 — Template Engine & Preview — DONE
+✅ Story #4 — Vercel Deployment Automation — DONE
+⏳ Story #5 — Final QA & Performance — IN PROGRESS
