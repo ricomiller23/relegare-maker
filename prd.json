@@ -11,7 +11,7 @@
         "Three selection slots are visible and interactive.",
         "Selection state is managed (picking a religion updates the slot)."
       ],
-      "status": "pending"
+      "status": "done"
     },
     {
       "id": 2,
@@ -21,7 +21,7 @@
         "JSON file exists with structured data for 8+ religions.",
         "Each entry contains: Time & Place, Founder, Sacred Text, Origin Culture, Creation Myth, Core Beliefs, Functional Purpose, Power Structure, Religious Lineage, Relevance & Legacy, and Practicum (I-V)."
       ],
-      "status": "pending"
+      "status": "done"
     },
     {
       "id": 3,

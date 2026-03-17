@@ -5,18 +5,18 @@
 // State
 let selectedReligions = [null, null, null];
 let activeSlot = null;
+let religions = [];
 
-// Mock Database (Story #2 will replace this with a real JSON)
-const religions = [
-    { id: 'catholicism', name: 'Catholicism', icon: '✝', color: 'blue' },
-    { id: 'zoroastrianism', name: 'Zoroastrianism', icon: '🔥', color: 'fire' },
-    { id: 'islam', name: 'Islam', icon: '☪', color: 'primary' },
-    { id: 'buddhism', name: 'Buddhism', icon: '☸', color: 'gold' },
-    { id: 'hinduism', name: 'Hinduism', icon: '🕉', color: 'fire' },
-    { id: 'judaism', name: 'Judaism', icon: '✡', color: 'blue' },
-    { id: 'shinto', name: 'Shinto', icon: '⛩', color: 'red' },
-    { id: 'sikhism', name: 'Sikhism', icon: '☬', color: 'fire' }
-];
+// Fetch real database
+async function loadReligions() {
+    try {
+        const response = await fetch('./religions.json');
+        religions = await response.json();
+        renderReligionList(religions);
+    } catch (err) {
+        console.error('Failed to load religions:', err);
+    }
+}
 
 // DOM Elements
 const slots = document.querySelectorAll('.slot-card');
@@ -27,8 +27,8 @@ const searchInput = document.getElementById('religion-search');
 const generateBtn = document.getElementById('generate-btn');
 
 // Initialize
-function init() {
-    renderReligionList(religions);
+async function init() {
+    await loadReligions();
     setupEventListeners();
     initStarfield();
 }
