@@ -123,8 +123,83 @@ function checkCompletion() {
     if (isComplete) {
         generateBtn.classList.remove('disabled');
         generateBtn.disabled = false;
+        const dBtn = document.getElementById('deploy-btn');
+        if (dBtn) {
+            dBtn.classList.remove('disabled');
+            dBtn.disabled = false;
+        }
     }
 }
+
+// Settings Logic
+window.openSettings = () => {
+    document.getElementById('settings-modal').classList.add('active');
+    document.getElementById('vercel-token').value = localStorage.getItem('vercel_token') || '';
+    document.getElementById('vercel-project').value = localStorage.getItem('vercel_project') || '';
+};
+
+window.closeSettings = () => {
+    document.getElementById('settings-modal').classList.remove('active');
+};
+
+window.saveSettings = () => {
+    const token = document.getElementById('vercel-token').value;
+    const project = document.getElementById('vercel-project').value;
+    localStorage.setItem('vercel_token', token);
+    localStorage.setItem('vercel_project', project);
+    window.closeSettings();
+};
+
+// Deployment Logic
+document.addEventListener('DOMContentLoaded', () => {
+    const deployBtn = document.getElementById('deploy-btn');
+    if (deployBtn) {
+        deployBtn.addEventListener('click', async () => {
+            const token = localStorage.getItem('vercel_token');
+            if (!token) {
+                alert('Please provide a Vercel Token in Settings first!');
+                window.openSettings();
+                return;
+            }
+
+            deployBtn.innerHTML = '🚀 DEPLOYING...';
+            deployBtn.disabled = true;
+
+            try {
+                const generator = new Generator(masterTemplate);
+                const html = generator.generate(selectedReligions);
+                const projectName = localStorage.getItem('vercel_project') || `religare-${Date.now()}`;
+
+                const response = await fetch('https://api.vercel.com/v13/deployments', {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        name: projectName,
+                        files: [{ file: 'index.html', data: html }],
+                        projectSettings: { framework: null }
+                    })
+                });
+
+                const data = await response.json();
+                if (data.url) {
+                    alert(`SUCCESS! Your app is deploying to: https://${data.url}`);
+                    window.open(`https://${data.url}`, '_blank');
+                } else {
+                    throw new Error(data.error?.message || 'Deployment failed');
+                }
+            } catch (err) {
+                console.error(err);
+                alert('Deployment Error: ' + err.message);
+            } finally {
+                deployBtn.innerHTML = '🚀 DEPLOY TO VERCEL';
+                deployBtn.disabled = false;
+            }
+        });
+    }
+});
 
 // Starfield Logic (ported from original)
 function initStarfield() {

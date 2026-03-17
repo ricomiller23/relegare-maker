@@ -62,8 +62,34 @@
             </div>
 
             <div class="action-footer">
-                <button class="btn-gold disabled" id="generate-btn" disabled>GENERATE & DEPLOY →</button>
-                <div class="text-muted mt-3" style="font-size: 12px;">All generated apps include the full Religare Practicum and Comparison Grid.</div>
+                <div class="actions" style="display: flex; gap: 20px; justify-content: center; margin-bottom: 20px;">
+                    <button class="btn-gold disabled" id="generate-btn" disabled style="flex: 1; max-width: 300px;">GENERATE & PREVIEW</button>
+                    <button class="btn-gold disabled" id="deploy-btn" disabled style="flex: 1; max-width: 300px; background: var(--text-gold);">🚀 DEPLOY TO VERCEL</button>
+                </div>
+                <div class="settings-trigger" onclick="openSettings()" style="cursor: pointer; color: var(--text-muted); font-size: 14px; margin-top: 10px;">⚙️ Vercel Settings</div>
+                <div class="text-muted mt-3" style="font-size: 12px; margin-top: 20px;">All generated apps include the full Religare Practicum and Comparison Grid.</div>
+            </div>
+
+            <!-- Vercel Settings Modal -->
+            <div id="settings-modal" class="modal-overlay">
+                <div class="modal-content" style="text-align: left;">
+                    <button class="modal-close" onclick="closeSettings()">&times;</button>
+                    <div class="heading-22 text-gold">Vercel Deployment Settings</div>
+                    <p class="text-muted" style="font-size: 14px; margin-bottom: 20px;">To deploy directly from the browser, you need a Vercel API Token.</p>
+                    
+                    <div style="margin-bottom: 20px;">
+                        <label style="display: block; font-size: 12px; font-weight: 700; margin-bottom: 8px; color: var(--text-muted);">VERCEL API TOKEN</label>
+                        <input type="password" id="vercel-token" placeholder="Paste your token here..." style="width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #E2E8F0; box-sizing: border-box;">
+                    </div>
+
+                    <div style="margin-bottom: 25px;">
+                        <label style="display: block; font-size: 12px; font-weight: 700; margin-bottom: 8px; color: var(--text-muted);">PROJECT NAME (OPTIONAL)</label>
+                        <input type="text" id="vercel-project" placeholder="e.g. my-custom-religare" style="width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #E2E8F0; box-sizing: border-box;">
+                    </div>
+
+                    <button class="btn-gold" onclick="saveSettings()" style="width: 100%;">SAVE SETTINGS</button>
+                    <p style="font-size: 10px; margin-top: 15px; color: var(--text-muted); text-align: center;">Your token is saved ONLY in your browser's local storage.</p>
+                </div>
             </div>
         </section>
     </main>
