@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RELEGARE MAKER — Create Your Telescope</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@400;600;700&family=JetBrains+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <canvas id="starfield"></canvas>
+    <div class="blob-container">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+    <div class="vignette-overlay"></div>
+
+    <header>
+        <div class="logo">🔭 RELEGARE MAKER</div>
+        <nav>
+            <button class="active">Create</button>
+            <button>Gallery</button>
+            <button>How it Works</button>
+        </nav>
+    </header>
+
+    <main id="maker-app">
+        <section class="screen active" id="setup">
+            <div class="heading-48 text-gold text-center">RELEGARE MAKER</div>
+            <div class="heading-22 text-muted text-center">Build a custom telescope for any three religions.</div>
+            
+            <div class="max-w-600 text-center mt-5" style="margin-bottom: 40px;">
+                Pick three religions from our database to generate a standalone, fully-functional Religare application. 
+                Perfect for comparing specific traditions or creating a personalized study guide.
+            </div>
+
+            <div class="selection-grid">
+                <div class="slot-container" id="slot-1" data-slot="1">
+                    <div class="slot-label">SLOT A: THE ONE I KNOW</div>
+                    <div class="slot-card empty">
+                        <span class="plus">+</span>
+                        <div class="slot-placeholder">Choose Religion</div>
+                    </div>
+                </div>
+                <div class="slot-container" id="slot-2" data-slot="2">
+                    <div class="slot-label">SLOT B: THE ONE I KNOW NOTHING ABOUT</div>
+                    <div class="slot-card empty">
+                        <span class="plus">+</span>
+                        <div class="slot-placeholder">Choose Religion</div>
+                    </div>
+                </div>
+                <div class="slot-container" id="slot-3" data-slot="3">
+                    <div class="slot-label">SLOT C: THE ONE I'M CURIOUS ABOUT</div>
+                    <div class="slot-card empty">
+                        <span class="plus">+</span>
+                        <div class="slot-placeholder">Choose Religion</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="action-footer">
+                <button class="btn-gold disabled" id="generate-btn" disabled>GENERATE & DEPLOY →</button>
+                <div class="text-muted mt-3" style="font-size: 12px;">All generated apps include the full Religare Practicum and Comparison Grid.</div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Religion Picker Modal -->
+    <div class="modal-overlay" id="picker-modal">
+        <div class="modal-content">
+            <button class="modal-close">&times;</button>
+            <div class="heading-22 text-gold">Choose a Religion</div>
+            <div class="search-bar">
+                <input type="text" id="religion-search" placeholder="Search religions...">
+            </div>
+            <div class="religion-list" id="modal-religion-list">
+                <!-- Populated by JS -->
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="./main.js"></script>
+</body>
+</html>

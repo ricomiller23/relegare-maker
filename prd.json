@@ -1,0 +1,61 @@
+{
+  "project": "Relegare Maker",
+  "description": "A meta-application that allows users to pick 3 religions and generates a custom 'The Religare' instance populated with their data, then deploys it to Vercel.",
+  "stories": [
+    {
+      "id": 1,
+      "title": "Selection UI & Landing Page",
+      "description": "Create a high-fidelity landing page with a 3-slot selection interface using the original Religare aesthetic (Glassmorphism, dark mode, Inter font). Users can search or pick from a list.",
+      "acceptance": [
+        "Landing page renders correctly with 'Relegare Maker' branding.",
+        "Three selection slots are visible and interactive.",
+        "Selection state is managed (picking a religion updates the slot)."
+      ],
+      "status": "pending"
+    },
+    {
+      "id": 2,
+      "title": "Religious Database (JSON)",
+      "description": "Develop a comprehensive JSON database of at least 8 major religions (Catholicism, Zoroastrianism, Islam, Buddhism, Hinduism, Judaism, Shinto, Sikhism) with all 11 Religare fields + Practicum sections.",
+      "acceptance": [
+        "JSON file exists with structured data for 8+ religions.",
+        "Each entry contains: Time & Place, Founder, Sacred Text, Origin Culture, Creation Myth, Core Beliefs, Functional Purpose, Power Structure, Religious Lineage, Relevance & Legacy, and Practicum (I-V)."
+      ],
+      "status": "pending"
+    },
+    {
+      "id": 3,
+      "title": "Template Engine & Preview",
+      "description": "Create a client-side generator that injects selected religion data into a master 'The Religare' template (HTML/CSS/JS constants). Add a 'Live Preview' mode.",
+      "acceptance": [
+        "Generator successfully replaces placeholders with JSON data.",
+        "Preview accurately reflects the look and feel of the original app.",
+        "All 3 selected religions are navigable in the preview."
+      ],
+      "status": "pending"
+    },
+    {
+      "id": 4,
+      "title": "Vercel Deployment Automation",
+      "description": "Implement a 'Deploy to Vercel' feature. This will bundle the generated HTML/CSS/JS into a temporary directory and use the Vercel CLI to deploy a new project.",
+      "acceptance": [
+        "Button 'GENERATE & DEPLOY' triggers the build process.",
+        "Generator creates a standalone project folder.",
+        "Vercel CLI command is executed to deploy the project.",
+        "User receives a success message with the live URL."
+      ],
+      "status": "pending"
+    },
+    {
+      "id": 5,
+      "title": "Final QA & Performance",
+      "description": "Audit the generated apps for tag closure, JS errors, and responsiveness. Ensure the 'Maker' interface itself is premium and stunning.",
+      "acceptance": [
+        "All generated apps pass a basic smoke test (navigation works).",
+        "Maker UI is optimized for mobile and desktop.",
+        "Starfield and animations are consistent with the original brand."
+      ],
+      "status": "pending"
+    }
+  ]
+}
