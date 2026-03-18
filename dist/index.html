@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RELEGARE MAKER — Create Your Telescope</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@400;600;700&family=JetBrains+Mono&display=swap" rel="stylesheet">
+  <script type="module" crossorigin src="/assets/index-BWcURCoV.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/index-CMftPMwJ.css">
+</head>
+<body>
+    <canvas id="starfield"></canvas>
+    <div class="blob-container">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+    <div class="vignette-overlay"></div>
+
+    <header>
+        <div class="logo">🔭 RELEGARE MAKER</div>
+        <nav>
+            <button class="active">Create</button>
+            <button>Gallery</button>
+            <button>How it Works</button>
+        </nav>
+    </header>
+
+    <main id="maker-app">
+        <section class="screen active" id="setup">
+            <div class="heading-48 text-gold text-center">RELEGARE MAKER</div>
+            <div class="heading-22 text-muted text-center">Build a custom telescope for any three religions.</div>
+            
+            <div class="max-w-600 text-center mt-5" style="margin-bottom: 40px;">
+                Pick three religions from our database to generate a standalone, fully-functional Religare application. 
+                Perfect for comparing specific traditions or creating a personalized study guide.
+            </div>
+
+            <div class="selection-grid">
+                <div class="slot-container" id="slot-1" data-slot="1">
+                    <div class="slot-label">SLOT A: THE ONE I KNOW</div>
+                    <div class="slot-card empty">
+                        <span class="plus">+</span>
+                        <div class="slot-placeholder">Choose Religion</div>
+                    </div>
+                    <div class="dropdown-menu"></div>
+                </div>
+                <div class="slot-container" id="slot-2" data-slot="2">
+                    <div class="slot-label">SLOT B: THE ONE I KNOW NOTHING ABOUT</div>
+                    <div class="slot-card empty">
+                        <span class="plus">+</span>
+                        <div class="slot-placeholder">Choose Religion</div>
+                    </div>
+                    <div class="dropdown-menu"></div>
+                </div>
+                <div class="slot-container" id="slot-3" data-slot="3">
+                    <div class="slot-label">SLOT C: THE ONE I'M CURIOUS ABOUT</div>
+                    <div class="slot-card empty">
+                        <span class="plus">+</span>
+                        <div class="slot-placeholder">Choose Religion</div>
+                    </div>
+                    <div class="dropdown-menu"></div>
+                </div>
+            </div>
+
+            <div class="action-footer">
+                <div class="actions" style="display: flex; gap: 20px; justify-content: center; margin-bottom: 20px;">
+                    <button class="btn-gold disabled" id="generate-btn" disabled style="flex: 1; max-width: 300px;">1. PREVIEW AS WEB APP</button>
+                    <button class="btn-gold disabled" id="deploy-btn" disabled style="flex: 1; max-width: 300px; background: var(--text-gold);">2. AUTO-SHIP TO VERCEL</button>
+                </div>
+                <div class="text-muted mt-3" style="font-size: 12px; margin-top: 20px;">Deployments are completely automated and instant.</div>
+            </div>
+        </section>
+    </main>
+
+
+</body>
+</html>

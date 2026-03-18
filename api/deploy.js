@@ -9,12 +9,12 @@ export default async function handler(req, res) {
     }
 
     const { projectName, html, files } = req.body;
-    const token = process.env.VERCEL_TOKEN;
+    const token = process.env.RELIGARE_DEPLOY_TOKEN;
 
     if (!token) {
         return res.status(500).json({ 
             error: 'CONFIGURATION_REQUIRED',
-            message: 'VERCEL_TOKEN is not set in your Vercel Project Environment Variables. Automation requires this one-time setup.'
+            message: 'RELIGARE_DEPLOY_TOKEN is not set in your Vercel Project Environment Variables. Automation requires this one-time setup.'
         });
     }
 

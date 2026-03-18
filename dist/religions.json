@@ -1,0 +1,266 @@
+[
+  {
+    "id": "catholicism",
+    "name": "Catholicism",
+    "icon": "✝",
+    "color": "blue",
+    "data": {
+      "timePlace": "1st Century CE, Roman Empire (Judea/Rome)",
+      "founder": "Jesus Christ (as interpreted by St. Peter and the Apostles)",
+      "sacredText": "The Holy Bible (Old & New Testament)",
+      "originCulture": "Hellenized Jewish/Roman Mediterranean",
+      "creationMyth": "Genesis: Divine creation ex nihilo in six days by the Triune God.",
+      "coreBeliefs": "Holy Trinity, Incarnation, Resurrection, Sacramental Grace, Papal Primacy, Original Sin.",
+      "functionalPurpose": "Redemption from sin and communal life in the Body of Christ via the Sacraments.",
+      "powerStructure": "Strictly Hierarchical (Pope, Cardinals, Bishops, Priests, Deacons, Laity).",
+      "religiousLineage": "Apostolic Succession from St. Peter; roots in Second Temple Judaism.",
+      "relevanceLegacy": "Shaped Western civilization, law, art, and ethics for two millennia.",
+      "practicum": {
+        "I": "Inherited Beliefs: 1. Papal Infallibility, 2. Real Presence in Eucharist, 3. Marian Intercession, 4. Purgatory, 5. Apostolic Succession.",
+        "II": "Uncommon Sense: The 'Silentium' Protocol - 30 days of silent prayer for 15 minutes before dawn.",
+        "III": "Requirements of Choice: Analysis of Agency and Maturity in sacramental participation.",
+        "IV": "Shadows of Grace: Managing pride and ritualism; tracking social media's impact on silence.",
+        "V": "Sacred Space: The Gothic Cathedral - Verticality, Light (Stained Glass), and Awe."
+      },
+      "quiz": [
+        { "q": "Who is considered the first Pope in Catholic tradition?", "options": ["St. Paul", "St. Peter", "St. Augustine", "St. Benedict"], "a": 1 },
+        { "q": "What was the result of the Council of Nicaea in 325 AD?", "options": ["The Great Schism", "The Protestant Reformation", "Formalization of the Trinity", "The Crusades"], "a": 2 }
+      ],
+      "flashcards": [
+        { "f": "Eucharist", "b": "The central sacrament of Catholicism, believed to be the body and blood of Christ." },
+        { "f": "Papal Infallibility", "b": "The doctrine that the Pope is preserved from error when speaking ex cathedra on faith or morals." }
+      ]
+    }
+  },
+  {
+    "id": "zoroastrianism",
+    "name": "Zoroastrianism",
+    "icon": "🔥",
+    "color": "fire",
+    "data": {
+      "timePlace": "c. 1500-1000 BCE, Ancient Persia (Eastern Iran/Central Asia)",
+      "founder": "Zarathustra (Zoroaster)",
+      "sacredText": "The Avesta (Gathas)",
+      "originCulture": "Proto-Indo-Iranian pastoralists",
+      "creationMyth": "Cosmic dualism: Ohrmazd creates light/truth; Ahriman creates darkness/deceit.",
+      "coreBeliefs": "Good Thoughts, Good Words, Good Deeds; Ahura Mazda as the Wise Lord.",
+      "functionalPurpose": "Joining the struggle for Truth (Asha) against Lie (Druj).",
+      "powerStructure": "Maneuvered by Magi/Mobeds (Priests); focus on individual moral agency.",
+      "religiousLineage": "Influenced Judaism, Christianity, and Islam; survives as Parsis in India.",
+      "relevanceLegacy": "Introduced linear time, final judgment, and heaven/hell to global theology.",
+      "practicum": {
+        "I": "Inherited Beliefs: 1. Fire as Purity, 2. Cosmic Dualism, 3. Final Renewal (Frashokereti), 4. Celestial Hierarchy, 5. Nature Sanctity.",
+        "II": "Uncommon Sense: The 'Asha' Alignment - 30 days of meticulous truth-telling in every interaction.",
+        "III": "Requirements of Choice: Evaluating decisions through the lens of Vohu Manah (Good Mind).",
+        "IV": "Shadows of Grace: Tracking reactivity to 'pollution' (dishonesty) for one week.",
+        "V": "Sacred Space: Atash Behram (Fire Temple) - The architecture of the eternal flame."
+      },
+      "quiz": [
+        { "q": "Who is the supreme 'Wise Lord' in Zoroastrianism?", "options": ["Angra Mainyu", "Ahura Mazda", "Zarathustra", "Mithra"], "a": 1 },
+        { "q": "What are the three pillars of Zoroastrian ethics?", "options": ["Faith, Hope, Charity", "Good Thoughts, Good Words, Good Deeds", "Prayer, Fasting, Almsgiving", "Asha, Druj, Vohu"], "a": 1 }
+      ],
+      "flashcards": [
+        { "f": "Gathas", "b": "The most sacred portion of the Avesta, hymns composed by Zoroaster himself." },
+        { "f": "Asha", "b": "The cosmic principle of truth, order, and righteousness." }
+      ]
+    }
+  },
+  {
+    "id": "islam",
+    "name": "Islam",
+    "icon": "☪",
+    "color": "primary",
+    "data": {
+      "timePlace": "610 CE (Mecca) / 622 CE (Medina), Arabian Peninsula",
+      "founder": "Muhammad ibn Abdullah",
+      "sacredText": "The Quran",
+      "originCulture": "Tribal Arabia; merchants and nomadic Bedouins.",
+      "creationMyth": "God (Allah) created the heavens and earth in six periods; Adam formed from clay.",
+      "coreBeliefs": "Tawhid (Absolute Monotheism), Five Pillars, Prophethood, Final Judgment.",
+      "functionalPurpose": "Submission to the will of God to achieve peace and justice (Ummah).",
+      "powerStructure": "Ulama (Scholars) and Imams (Leaders); decentralized in Sunni, centralized in Shia.",
+      "religiousLineage": "Abrahamic tradition following Ishmael; final revelation after Judaism/Christianity.",
+      "relevanceLegacy": "Global reach, preserved classical knowledge, major political/cultural force.",
+      "practicum": {
+        "I": "Inherited Beliefs: 1. Finality of Prophethood, 2. Inerrancy of Quran, 3. Predestination (Qadar), 4. Angels/Jinn, 5. Charity (Zakat).",
+        "II": "Uncommon Sense: The 'Salat' Rhythm - 30 days of strict five-time prayer without exception.",
+        "III": "Requirements of Choice: Analysis of Agency within the concept of Divine Decree.",
+        "IV": "Shadows of Grace: Tracking ego (Nafs) and anger; identifying triggers for spiritual distraction.",
+        "V": "Sacred Space: The Grand Mosque - Geometric infinite patterns and the absence of icons."
+      },
+      "quiz": [
+        { "q": "What does the word 'Islam' literally mean?", "options": ["Peace", "Submission", "Prayer", "Holy"], "a": 1 },
+        { "q": "What was the 'Hijra' in 622 CE?", "options": ["Birth of the Prophet", "First Revelation", "Migration to Medina", "Conquest of Mecca"], "a": 2 }
+      ],
+      "flashcards": [
+        { "f": "Tawhid", "b": "The central doctrine of the absolute Oneness of God." },
+        { "f": "Ummah", "b": "The supra-national community of all Muslims." }
+      ]
+    }
+  },
+  {
+    "id": "buddhism",
+    "name": "Buddhism",
+    "icon": "☸",
+    "color": "gold",
+    "data": {
+      "timePlace": "6th Century BCE, Northeastern India / Nepal",
+      "founder": "Siddhartha Gautama (The Buddha)",
+      "sacredText": "Tripitaka (Pali Canon), Mahayana Sutras",
+      "originCulture": "Ancient Indian/Vedic era reform movement",
+      "creationMyth": "Non-creationist: An endless cycle of cosmic expansion and contraction.",
+      "coreBeliefs": "Four Noble Truths, Eightfold Path, Impermanence (Anicca), Nirvana.",
+      "functionalPurpose": "Cessation of suffering (Dukkha) through the elimination of craving.",
+      "powerStructure": "Sangha (Monastic community); varying hierarchies (Dalai Lama, Zen Masters).",
+      "religiousLineage": "Evolved from Sramana traditions; diverged into Theravada, Mahayana, Vajrayana.",
+      "relevanceLegacy": "Pioneered mindfulness, meditation, and psychological introspection globally.",
+      "practicum": {
+        "I": "Inherited Beliefs: 1. Cycle of Rebirth (Samsara), 2. Karma, 3. No-Self (Anatta), 4. Middle Way, 5. Enlightenment.",
+        "II": "Uncommon Sense: The 'Vipassana' Observation - 30 days of 20-min daily mindfulness.",
+        "III": "Requirements of Choice: Awareness vs. Attachment in daily decision making.",
+        "IV": "Shadows of Grace: Identifying 'hindrances' (greed, ill-will); tracking emotional reactivity.",
+        "V": "Sacred Space: The Stupa - Symbolic architecture of the enlightened mind."
+      },
+      "quiz": [
+        { "q": "What is the primary goal of Buddhism?", "options": ["Reincarnation", "Nirvana (Cessation of Suffering)", "Worship of Gods", "Conquest of India"], "a": 1 },
+        { "q": "What does 'Anicca' mean?", "options": ["Suffering", "Self", "Impermanence", "Wisdom"], "a": 2 }
+      ],
+      "flashcards": [
+        { "f": "Four Noble Truths", "b": "The essence of Buddha's teachings: truth of suffering, its cause, its end, and the path to end it." },
+        { "f": "Sangha", "b": "The Buddhist community, specifically the monastic order." }
+      ]
+    }
+  },
+  {
+    "id": "hinduism",
+    "name": "Hinduism",
+    "icon": "🕉",
+    "color": "fire",
+    "data": {
+      "timePlace": "Indus Valley (Origins unknown); Vedic Period c. 1500 BCE",
+      "founder": "No single founder; a synthesis of Indo-Aryan and indigenous traditions.",
+      "sacredText": "Vedas, Upanishads, Bhagavad Gita, Ramayana, Mahabharata",
+      "originCulture": "Indo-Gangetic Civilization",
+      "creationMyth": "Cyclical: Brahma creates, Vishnu preserves, Shiva destroys in 'Yugas'.",
+      "coreBeliefs": "Brahman (Ultimate Reality), Atman (Soul), Dharma, Karma, Moksha.",
+      "functionalPurpose": "Realization of the soul's unity with the Divine through various paths (Yogas).",
+      "powerStructure": "Varna (Caste) system historically; Guru-Shishya (Teacher-Disciple) lineages.",
+      "religiousLineage": "Sanatana Dharma; internal reforms lead to Jainism, Buddhism, Sikhism.",
+      "relevanceLegacy": "World's oldest living religion; profound impact on math, science, and yoga.",
+      "practicum": {
+        "I": "Inherited Beliefs: 1. Reincarnation, 2. Sacredness of Life (Ahimsa), 3. Multiple Deities/One Truth, 4. Ritual Purity, 5. Moksha.",
+        "II": "Uncommon Sense: The 'Bhakti' Devotion - 30 days of morning mantra meditation.",
+        "III": "Requirements of Choice: Swadharma (Individual Duty) vs. Desire-driven action.",
+        "IV": "Shadows of Grace: Assessing impacts of 'Maya' (Illusion) on personal goals.",
+        "V": "Sacred Space: The Gopuram (Temple Tower) - Mapping the macrocosm to the microcosm."
+      },
+      "quiz": [
+        { "q": "What is 'Moksha' in Hinduism?", "options": ["The cycle of birth and death", "Liberation from the cycle of rebirth", "A sacred ritual", "A type of yoga"], "a": 1 },
+        { "q": "Who is the Preserver in the Hindu Trinity (Trimurti)?", "options": ["Brahma", "Shiva", "Vishnu", "Ganesha"], "a": 2 }
+      ],
+      "flashcards": [
+        { "f": "Brahman", "b": "The ultimate, unchanging reality that is the ground of all existence." },
+        { "f": "Dharma", "b": "The eternal law, duty, or conduct that maintains cosmic order." }
+      ]
+    }
+  },
+  {
+    "id": "judaism",
+    "name": "Judaism",
+    "icon": "✡",
+    "color": "blue",
+    "data": {
+      "timePlace": "c. 1800 BCE (Origins) / 1300 BCE (Exodus), Canaan/Israel",
+      "founder": "Abraham (Patriarch), Moses (Lawgiver)",
+      "sacredText": "Tanakh (Torah, Prophets, Writings), Talmud",
+      "originCulture": "Ancient Hebrew/Semitic tribes",
+      "creationMyth": "Genesis 1: God speaks the world into existence; man in God's image.",
+      "coreBeliefs": "Ethical Monotheism, Covenant, Torah Observance, Tikkun Olam (Repairing the World).",
+      "functionalPurpose": "Living as a 'light unto the nations' through adherence to divine law.",
+      "powerStructure": "Non-hierarchical; centered on Rabbis (Scholars) and Community (Minyan).",
+      "religiousLineage": "Parent of Christianity and Islam; continues through Jewish Diaspora.",
+      "relevanceLegacy": "Invented the concept of structural social justice and legal ethics.",
+      "practicum": {
+        "I": "Inherited Beliefs: 1. Chosenness as Responsibility, 2. Sabbath Rest, 3. Messianic Hope, 4. Oral Tradition, 5. Dietary Laws (Kashrut).",
+        "II": "Uncommon Sense: The 'Shabbat' Disconnect - 30 days of 24h digital detox weekly.",
+        "III": "Requirements of Choice: Free will (Bechirah) within the bounds of Mitzvot.",
+        "IV": "Shadows of Grace: Identifying 'Loshon Hara' (Negative Speech) patterns for a week.",
+        "V": "Sacred Space: The Western Wall - A ritual return to the center of history."
+      },
+      "quiz": [
+        { "q": "What is the primary sacred text of Judaism?", "options": ["The Quran", "The New Testament", "The Torah", "The Vedas"], "a": 2 },
+        { "q": "What does 'Tikkun Olam' mean?", "options": ["Study of Law", "Repairing the World", "Chosen People", "Sabbath Rest"], "a": 1 }
+      ],
+      "flashcards": [
+        { "f": "Covenant", "b": "A sacred and binding agreement between God and the Jewish people." },
+        { "f": "Shabbat", "b": "The day of rest, from Friday evening to Saturday evening." }
+      ]
+    }
+  },
+  {
+    "id": "shinto",
+    "name": "Shinto",
+    "icon": "⛩",
+    "color": "red",
+    "data": {
+      "timePlace": "Indigenous to Ancient Japan (Yayoi period c. 300 BCE)",
+      "founder": "No single founder; evolved from animistic folklore.",
+      "sacredText": "Kojiki, Nihon Shoki (Historical Mythologies)",
+      "originCulture": "Archaic Japanese archipelago",
+      "creationMyth": "Izanagi and Izanami stir the ocean; birth of Japanese islands and Amaterasu (Sun).",
+      "coreBeliefs": "Kami (Life Essence), Purity (Harae), Makoto (Sincerity), Natural Harmony.",
+      "functionalPurpose": "Maintaining the state of 'Wa' (Harmony) between humans, nature, and spirits.",
+      "powerStructure": "Shrine Priesthood; historically tied to the Imperial Household.",
+      "religiousLineage": "Deeply syncretized with Buddhism (Shinbutsu-shugo).",
+      "relevanceLegacy": "Defines Japanese aesthetics, ethics, and reverence for nature.",
+      "practicum": {
+        "I": "Inherited Beliefs: 1. Spirits in Trees/Rocks, 2. Ancestor Veneration, 3. Ritual Cleansing, 4. Seasonal Festivals (Matsuri), 5. Imperial Divinity (historic).",
+        "II": "Uncommon Sense: The 'Misogi' Morning - 30 days of cold water ritual purification.",
+        "III": "Requirements of Choice: Individual desire vs. the Harmony of the Great Way.",
+        "IV": "Shadows of Grace: Tracking 'Kegare' (spiritual stagnation) through environment clutter.",
+        "V": "Sacred Space: The Torii Gate - The boundary between the profane and the sacred."
+      },
+      "quiz": [
+        { "q": "What are 'Kami' in Shinto?", "options": ["Demons", "Spiritual essences or deities in nature", "Priests", "Sacred books"], "a": 1 },
+        { "q": "What is the primary focus of Shinto rituals?", "options": ["Salvation from sin", "Purity and Harmony", "World Conquest", "Individual enlightenment"], "a": 1 }
+      ],
+      "flashcards": [
+        { "f": "Torii", "b": "A traditional Japanese gate most commonly found at the entrance of a Shinto shrine." },
+        { "f": "Harae", "b": "Ritual purification ceremonies." }
+      ]
+    }
+  },
+  {
+    "id": "sikhism",
+    "name": "Sikhism",
+    "icon": "☬",
+    "color": "fire",
+    "data": {
+      "timePlace": "1469 CE, Punjab (Modern India/Pakistan)",
+      "founder": "Guru Nanak Dev Ji",
+      "sacredText": "Guru Granth Sahib (The Eternal Guru)",
+      "originCulture": "Punjabi agrarian/merchant society",
+      "creationMyth": "God (Ik Onkar) created the universe by his command; creation is divine light.",
+      "coreBeliefs": "One God, Equality of Mankind, Selfless Service (Seva), Honest Labor.",
+      "functionalPurpose": "Union with God through truth-living and service to humanity.",
+      "powerStructure": "Democratic equality; authority in the collective Panth and the Scripture.",
+      "religiousLineage": "Succession of ten human Gurus followed by the Eternal Guru (Scripture).",
+      "relevanceLegacy": "Defenders of human rights; pioneers of radical social equality (Langar).",
+      "practicum": {
+        "I": "Inherited Beliefs: 1. Ik Onkar (Oneness), 2. Five Ks, 3. Rejection of Caste, 4. Saint-Soldier Ideal, 5. Daily Prayer (Nitnem).",
+        "II": "Uncommon Sense: The 'Langar' Service - 30 days of preparing/serving food to strangers.",
+        "III": "Requirements of Choice: Assessing agency in the context of Hukam (Divine Will).",
+        "IV": "Shadows of Grace: Tracking Five Vices (Ego, Anger, Greed, Attachment, Lust).",
+        "V": "Sacred Space: The Golden Temple - Four doors open to all directions/castes."
+      },
+      "quiz": [
+        { "q": "Who was the first Guru of Sikhism?", "options": ["Guru Gobind Singh", "Guru Nanak", "Guru Arjan", "Guru Tegh Bahadur"], "a": 1 },
+        { "q": "What is 'Langar'?", "options": ["A sacred sword", "A communal kitchen serving free meals to all", "A type of prayer", "The Sikh holy book"], "a": 1 }
+      ],
+      "flashcards": [
+        { "f": "Ik Onkar", "b": "The symbol representing the Oneness of God." },
+        { "f": "Seva", "b": "Selfless service to the community." }
+      ]
+    }
+  }
+]
