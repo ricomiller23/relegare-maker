@@ -56,6 +56,18 @@
         "Starfield and animations are consistent with the original brand."
       ],
       "status": "done"
+    },
+    {
+      "id": 6,
+      "title": "Serverless Deployment Backend",
+      "description": "Create a secure serverless function to handle Vercel deployments using environment variables.",
+      "status": "done"
+    },
+    {
+      "id": 7,
+      "title": "One-Click Automation UI",
+      "description": "Refactor the UI to perform zero-config deployments without requiring user tokens in the frontend.",
+      "status": "done"
     }
   ]
 }
