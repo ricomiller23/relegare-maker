@@ -15,7 +15,7 @@ async function loadReligions() {
     try {
         const response = await fetch('./religions.json');
         religions = await response.json();
-        renderReligionList(religions);
+        // Template loading continued
 
         // Load template
         const tplResponse = await fetch('./master_template.html');

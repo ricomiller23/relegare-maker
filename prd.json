@@ -32,7 +32,7 @@
         "Preview accurately reflects the look and feel of the original app.",
         "All 3 selected religions are navigable in the preview."
       ],
-      "status": "pending"
+      "status": "done"
     },
     {
       "id": 4,
@@ -44,7 +44,7 @@
         "Vercel CLI command is executed to deploy the project.",
         "User receives a success message with the live URL."
       ],
-      "status": "pending"
+      "status": "done"
     },
     {
       "id": 5,
@@ -55,7 +55,7 @@
         "Maker UI is optimized for mobile and desktop.",
         "Starfield and animations are consistent with the original brand."
       ],
-      "status": "pending"
+      "status": "done"
     }
   ]
 }
