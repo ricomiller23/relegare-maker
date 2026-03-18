@@ -13,12 +13,12 @@ let masterTemplate = '';
 // Fetch real database
 async function loadReligions() {
     try {
-        const response = await fetch('./religions.json');
+        const response = await fetch('/religions.json');
         religions = await response.json();
         // Template loading continued
 
         // Load template
-        const tplResponse = await fetch('./master_template.html');
+        const tplResponse = await fetch('/master_template.html');
         masterTemplate = await tplResponse.text();
     } catch (err) {
         console.error('Failed to load religions:', err);
