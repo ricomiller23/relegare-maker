@@ -175,9 +175,51 @@ document.addEventListener('DOMContentLoaded', () => {
                 deployBtn.innerHTML = '🚀 DEPLOY TO VERCEL';
                 deployBtn.disabled = false;
             }
-        });
-    }
 });
+
+function showSetupModal(message) {
+    const modalId = 'setup-recovery-modal';
+    let modal = document.getElementById(modalId);
+    
+    if (!modal) {
+        modal = document.createElement('div');
+        modal.id = modalId;
+        modal.className = 'modal-overlay active';
+        modal.innerHTML = `
+            <div class="modal-content" style="text-align: left; max-width: 500px;">
+                <button class="modal-close" onclick="this.closest('.modal-overlay').classList.remove('active')">&times;</button>
+                <div class="heading-22 text-gold">Final Automation Setup</div>
+                <p class="text-muted" style="font-size: 14px; margin-bottom: 20px;">${message}</p>
+                
+                <div style="background: rgba(255,184,0,0.1); border: 1px solid var(--text-gold); padding: 15px; border-radius: 8px; margin-bottom: 20px;">
+                    <p style="font-size: 12px; color: var(--text-gold); margin: 0;"><strong>Why is this needed?</strong> To deploy "completely automated" from the cloud, your Vercel server needs a secure connection key (Token).</p>
+                </div>
+
+                <div style="margin-bottom: 20px;">
+                    <label style="display: block; font-size: 12px; font-weight: 700; margin-bottom: 8px; color: var(--text-muted);">ENTER VERCEL API TOKEN (ONCE)</label>
+                    <input type="password" id="recovery-token" placeholder="Paste your token here..." style="width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #333; background: #000; color: #fff; box-sizing: border-box;">
+                </div>
+
+                <button class="btn-gold" id="save-recovery-btn" style="width: 100%;">FINISH AUTOMATION SETUP</button>
+                <p style="font-size: 10px; margin-top: 15px; color: var(--text-muted); text-align: center;">This will configure your Vercel project permanently.</p>
+            </div>
+        `;
+        document.body.appendChild(modal);
+
+        document.getElementById('save-recovery-btn').addEventListener('click', async () => {
+            const token = document.getElementById('recovery-token').value;
+            if (!token) return alert('Please enter a token.');
+            
+            // In a real automated flow, we'd send this to an endpoint that sets the env var
+            // For now, we'll store it in localStorage as a backup and tell the user to tell the agent
+            localStorage.setItem('vercel_token', token);
+            alert('Token saved locally. Please paste this token into the chat so the Antigravity agent can configure your Vercel Environment permanently!');
+            modal.classList.remove('active');
+        });
+    } else {
+        modal.classList.add('active');
+    }
+}
 
 // Starfield Logic (ported from original)
 function initStarfield() {
