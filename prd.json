@@ -68,6 +68,11 @@
       "title": "One-Click Automation UI",
       "description": "Refactor the UI to perform zero-config deployments without requiring user tokens in the frontend.",
       "status": "done"
+    {
+      "id": 8,
+      "title": "Premium Light Theme",
+      "description": "Transition the entire ecosystem to a high-end light theme with a white background as per user brand preference.",
+      "status": "done"
     }
   ]
 }
