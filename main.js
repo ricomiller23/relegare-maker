@@ -42,59 +42,63 @@ async function init() {
 
 function setupEventListeners() {
     slots.forEach(slot => {
-        slot.addEventListener('click', () => {
-            activeSlot = parseInt(slot.parentElement.dataset.slot) - 1;
-            openModal();
+        slot.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const slotIdx = parseInt(slot.parentElement.dataset.slot) - 1;
+            activeSlot = slotIdx;
+            toggleDropdown(slotIdx);
         });
     });
 
-    modalClose.addEventListener('click', closeModal);
-    window.addEventListener('click', (e) => {
-        if (e.target === modal) closeModal();
-    });
-
-    searchInput.addEventListener('input', (e) => {
-        const term = e.target.value.toLowerCase();
-        const filtered = religions.filter(r => r.name.toLowerCase().includes(term));
-        renderReligionList(filtered);
+    window.addEventListener('click', () => {
+        closeAllDropdowns();
     });
 
     generateBtn.addEventListener('click', () => {
-    if (selectedReligions.includes(null)) return;
+        if (selectedReligions.includes(null)) return;
 
-    const generator = new Generator(masterTemplate);
-    const generatedHtml = generator.generate(selectedReligions);
+        const generator = new Generator(masterTemplate);
+        const generatedHtml = generator.generate(selectedReligions);
 
-    // For Story #3, we'll show a preview in a new window
-    const previewWindow = window.open('', '_blank');
-    previewWindow.document.write(generatedHtml);
-    previewWindow.document.close();
-});
+        const previewWindow = window.open('', '_blank');
+        previewWindow.document.write(generatedHtml);
+        previewWindow.document.close();
+    });
 }
 
-function openModal() {
-    modal.classList.add('active');
-    searchInput.value = '';
-    renderReligionList(religions);
-    searchInput.focus();
+function toggleDropdown(slotIdx) {
+    const parent = document.querySelector(`[data-slot="${slotIdx + 1}"]`);
+    const menu = parent.querySelector('.dropdown-menu');
+    const wasActive = menu.classList.contains('active');
+    
+    closeAllDropdowns();
+    
+    if (!wasActive) {
+        renderDropdownList(menu);
+        menu.classList.add('active');
+    }
 }
 
-function closeModal() {
-    modal.classList.remove('active');
-    activeSlot = null;
+function closeAllDropdowns() {
+    document.querySelectorAll('.dropdown-menu').forEach(menu => {
+        menu.classList.remove('active');
+    });
 }
 
-function renderReligionList(list) {
-    religionList.innerHTML = '';
-    list.forEach(rel => {
+function renderDropdownList(container) {
+    container.innerHTML = '';
+    religions.forEach(rel => {
         const item = document.createElement('div');
-        item.className = 'religion-item';
+        item.className = 'dropdown-item';
         item.innerHTML = `
             <span class="icon">${rel.icon}</span>
             <span class="name">${rel.name}</span>
         `;
-        item.onclick = () => selectReligion(rel);
-        religionList.appendChild(item);
+        item.onclick = (e) => {
+            e.stopPropagation();
+            selectReligion(rel);
+        };
+        container.appendChild(item);
     });
 }
 
@@ -102,7 +106,7 @@ function selectReligion(religion) {
     selectedReligions[activeSlot] = religion;
     updateSlotUI(activeSlot);
     checkCompletion();
-    closeModal();
+    closeAllDropdowns();
 }
 
 function updateSlotUI(slotIndex) {
