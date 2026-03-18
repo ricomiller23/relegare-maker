@@ -221,7 +221,7 @@ function initStarfield() {
     }
     function animate() {
         ctx.clearRect(0, 0, width, height);
-        ctx.fillStyle = '#fff';
+        ctx.fillStyle = '#000';
         stars.forEach(s => {
             ctx.globalAlpha = s.opacity;
             ctx.beginPath();

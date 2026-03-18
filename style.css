@@ -1,18 +1,18 @@
 :root {
-  --bg-primary: #F8FAFC;
-  --bg-glass: rgba(255, 255, 255, 0.45);
-  --bg-glass-heavy: rgba(255, 255, 255, 0.7);
-  --accent-primary: #1A1A1A;
-  --accent-gold: #D4AF37;
-  --accent-glow: rgba(0, 0, 0, 0.05);
-  --text-primary: #1A1A1A;
-  --text-muted: #64748B;
-  --text-gold: #B8860B;
-  --border-glass: rgba(255, 255, 255, 0.6);
-  --blur-radius: 40px;
-  --radius-lg: 32px;
+  --bg-primary: #FFFFFF;
+  --bg-glass: rgba(255, 255, 255, 0.7);
+  --bg-glass-heavy: rgba(255, 255, 255, 0.9);
+  --accent-primary: #000000;
+  --accent-gold: #B8860B;
+  --accent-glow: rgba(0, 0, 0, 0.02);
+  --text-primary: #121212;
+  --text-muted: #666666;
+  --text-gold: #966C00;
+  --border-glass: rgba(0, 0, 0, 0.1);
+  --blur-radius: 20px;
+  --radius-lg: 24px;
   --radius-pill: 50px;
-  --shadow-soft: 0 10px 30px -5px rgba(0, 0, 0, 0.04);
+  --shadow-soft: 0 4px 20px rgba(0, 0, 0, 0.05);
 }
 
 @keyframes blob {
@@ -40,9 +40,9 @@
   animation: blob 20s infinite alternate;
 }
 
-.blob-1 { top: -100px; left: -100px; background: #E0F2FE; }
-.blob-2 { top: 20%; right: -100px; background: #F3E8FF; animation-delay: -5s; }
-.blob-3 { bottom: -100px; left: 20%; background: #DCFCE7; animation-delay: -10s; }
+.blob-1 { top: -100px; left: -100px; background: #F0F9FF; }
+.blob-2 { top: 20%; right: -100px; background: #FAF5FF; animation-delay: -5s; }
+.blob-3 { bottom: -100px; left: 20%; background: #F0FDF4; animation-delay: -10s; }
 
 body {
   font-family: 'Inter', sans-serif;
