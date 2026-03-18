@@ -267,4 +267,11 @@ function initStarfield() {
     animate();
 }
 
+async function init() {
+    await loadReligions();
+    // No need to manually call initStarfield if it's called inside loadReligions or at top level
+    // But let's be consistent with original
+    initStarfield();
+}
+
 init();
