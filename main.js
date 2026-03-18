@@ -10,14 +10,15 @@ let activeSlot = null;
 let religions = [];
 let masterTemplate = '';
 
+// DOM Elements
+let slots, modal, modalClose, religionList, searchInput, generateBtn, deployBtn;
+
 // Fetch real database
 async function loadReligions() {
     try {
         const response = await fetch('/religions.json');
         religions = await response.json();
-        // Template loading continued
 
-        // Load template
         const tplResponse = await fetch('/master_template.html');
         masterTemplate = await tplResponse.text();
     } catch (err) {
@@ -25,22 +26,11 @@ async function loadReligions() {
     }
 }
 
-// DOM Elements
-const slots = document.querySelectorAll('.slot-card');
-const modal = document.getElementById('picker-modal');
-const modalClose = document.querySelector('.modal-close');
-const religionList = document.getElementById('modal-religion-list');
-const searchInput = document.getElementById('religion-search');
-const generateBtn = document.getElementById('generate-btn');
-
-// Initialize
-async function init() {
-    await loadReligions();
-    setupEventListeners();
-    initStarfield();
-}
-
 function setupEventListeners() {
+    slots = document.querySelectorAll('.slot-card');
+    generateBtn = document.getElementById('generate-btn');
+    deployBtn = document.getElementById('deploy-btn');
+
     slots.forEach(slot => {
         slot.addEventListener('click', (e) => {
             e.stopPropagation();
@@ -54,90 +44,17 @@ function setupEventListeners() {
         closeAllDropdowns();
     });
 
-    generateBtn.addEventListener('click', () => {
-        if (selectedReligions.includes(null)) return;
-
-        const generator = new Generator(masterTemplate);
-        const generatedHtml = generator.generate(selectedReligions);
-
-        const previewWindow = window.open('', '_blank');
-        previewWindow.document.write(generatedHtml);
-        previewWindow.document.close();
-    });
-}
-
-function toggleDropdown(slotIdx) {
-    const parent = document.querySelector(`[data-slot="${slotIdx + 1}"]`);
-    const menu = parent.querySelector('.dropdown-menu');
-    const wasActive = menu.classList.contains('active');
-    
-    closeAllDropdowns();
-    
-    if (!wasActive) {
-        renderDropdownList(menu);
-        menu.classList.add('active');
+    if (generateBtn) {
+        generateBtn.addEventListener('click', () => {
+            if (selectedReligions.includes(null)) return;
+            const generator = new Generator(masterTemplate);
+            const generatedHtml = generator.generate(selectedReligions);
+            const previewWindow = window.open('', '_blank');
+            previewWindow.document.write(generatedHtml);
+            previewWindow.document.close();
+        });
     }
-}
 
-function closeAllDropdowns() {
-    document.querySelectorAll('.dropdown-menu').forEach(menu => {
-        menu.classList.remove('active');
-    });
-}
-
-function renderDropdownList(container) {
-    container.innerHTML = '';
-    religions.forEach(rel => {
-        const item = document.createElement('div');
-        item.className = 'dropdown-item';
-        item.innerHTML = `
-            <span class="icon">${rel.icon}</span>
-            <span class="name">${rel.name}</span>
-        `;
-        item.onclick = (e) => {
-            e.stopPropagation();
-            selectReligion(rel);
-        };
-        container.appendChild(item);
-    });
-}
-
-function selectReligion(religion) {
-    selectedReligions[activeSlot] = religion;
-    updateSlotUI(activeSlot);
-    checkCompletion();
-    closeAllDropdowns();
-}
-
-function updateSlotUI(slotIndex) {
-    const slot = document.querySelector(`[data-slot="${slotIndex + 1}"] .slot-card`);
-    const rel = selectedReligions[slotIndex];
-    
-    slot.innerHTML = `
-        <span class="card-icon" style="font-size: 48px; margin-bottom: 20px;">${rel.icon}</span>
-        <div class="card-title" style="font-size: 20px; color: var(--accent-primary);">${rel.name}</div>
-        <div class="text-muted" style="font-size: 12px; margin-top: 10px;">Change Religion</div>
-    `;
-    slot.classList.add('filled');
-    slot.classList.remove('empty');
-}
-
-function checkCompletion() {
-    const isComplete = selectedReligions.every(r => r !== null);
-    if (isComplete) {
-        generateBtn.classList.remove('disabled');
-        generateBtn.disabled = false;
-        const dBtn = document.getElementById('deploy-btn');
-        if (dBtn) {
-            dBtn.classList.remove('disabled');
-            dBtn.disabled = false;
-        }
-    }
-}
-
-// Deployment Logic
-document.addEventListener('DOMContentLoaded', () => {
-    const deployBtn = document.getElementById('deploy-btn');
     if (deployBtn) {
         deployBtn.addEventListener('click', async () => {
             if (selectedReligions.includes(null)) {
@@ -175,12 +92,77 @@ document.addEventListener('DOMContentLoaded', () => {
                 deployBtn.innerHTML = '🚀 DEPLOY TO VERCEL';
                 deployBtn.disabled = false;
             }
-});
+        });
+    }
+}
+
+function toggleDropdown(slotIdx) {
+    const parent = document.querySelector(`[data-slot="${slotIdx + 1}"]`);
+    const menu = parent.querySelector('.dropdown-menu');
+    const wasActive = menu.classList.contains('active');
+    closeAllDropdowns();
+    if (!wasActive) {
+        renderDropdownList(menu);
+        menu.classList.add('active');
+    }
+}
+
+function closeAllDropdowns() {
+    document.querySelectorAll('.dropdown-menu').forEach(menu => {
+        menu.classList.remove('active');
+    });
+}
+
+function renderDropdownList(container) {
+    container.innerHTML = '';
+    religions.forEach(rel => {
+        const item = document.createElement('div');
+        item.className = 'dropdown-item';
+        item.innerHTML = `<span class="icon">${rel.icon}</span><span class="name">${rel.name}</span>`;
+        item.onclick = (e) => {
+            e.stopPropagation();
+            selectReligion(rel);
+        };
+        container.appendChild(item);
+    });
+}
+
+function selectReligion(religion) {
+    selectedReligions[activeSlot] = religion;
+    updateSlotUI(activeSlot);
+    checkCompletion();
+    closeAllDropdowns();
+}
+
+function updateSlotUI(slotIndex) {
+    const slot = document.querySelector(`[data-slot="${slotIndex + 1}"] .slot-card`);
+    const rel = selectedReligions[slotIndex];
+    slot.innerHTML = `
+        <span class="card-icon" style="font-size: 48px; margin-bottom: 20px;">${rel.icon}</span>
+        <div class="card-title" style="font-size: 20px; color: var(--accent-primary);">${rel.name}</div>
+        <div class="text-muted" style="font-size: 12px; margin-top: 10px;">Change Religion</div>
+    `;
+    slot.classList.add('filled');
+    slot.classList.remove('empty');
+}
+
+function checkCompletion() {
+    const isComplete = selectedReligions.every(r => r !== null);
+    if (isComplete) {
+        if (generateBtn) {
+            generateBtn.classList.remove('disabled');
+            generateBtn.disabled = false;
+        }
+        if (deployBtn) {
+            deployBtn.classList.remove('disabled');
+            deployBtn.disabled = false;
+        }
+    }
+}
 
 function showSetupModal(message) {
     const modalId = 'setup-recovery-modal';
     let modal = document.getElementById(modalId);
-    
     if (!modal) {
         modal = document.createElement('div');
         modal.id = modalId;
@@ -190,28 +172,20 @@ function showSetupModal(message) {
                 <button class="modal-close" onclick="this.closest('.modal-overlay').classList.remove('active')">&times;</button>
                 <div class="heading-22 text-gold">Final Automation Setup</div>
                 <p class="text-muted" style="font-size: 14px; margin-bottom: 20px;">${message}</p>
-                
                 <div style="background: rgba(255,184,0,0.1); border: 1px solid var(--text-gold); padding: 15px; border-radius: 8px; margin-bottom: 20px;">
                     <p style="font-size: 12px; color: var(--text-gold); margin: 0;"><strong>Why is this needed?</strong> To deploy "completely automated" from the cloud, your Vercel server needs a secure connection key (Token).</p>
                 </div>
-
                 <div style="margin-bottom: 20px;">
                     <label style="display: block; font-size: 12px; font-weight: 700; margin-bottom: 8px; color: var(--text-muted);">ENTER VERCEL API TOKEN (ONCE)</label>
                     <input type="password" id="recovery-token" placeholder="Paste your token here..." style="width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #333; background: #000; color: #fff; box-sizing: border-box;">
                 </div>
-
                 <button class="btn-gold" id="save-recovery-btn" style="width: 100%;">FINISH AUTOMATION SETUP</button>
-                <p style="font-size: 10px; margin-top: 15px; color: var(--text-muted); text-align: center;">This will configure your Vercel project permanently.</p>
             </div>
         `;
         document.body.appendChild(modal);
-
-        document.getElementById('save-recovery-btn').addEventListener('click', async () => {
+        document.getElementById('save-recovery-btn').addEventListener('click', () => {
             const token = document.getElementById('recovery-token').value;
             if (!token) return alert('Please enter a token.');
-            
-            // In a real automated flow, we'd send this to an endpoint that sets the env var
-            // For now, we'll store it in localStorage as a backup and tell the user to tell the agent
             localStorage.setItem('vercel_token', token);
             alert('Token saved locally. Please paste this token into the chat so the Antigravity agent can configure your Vercel Environment permanently!');
             modal.classList.remove('active');
@@ -221,12 +195,11 @@ function showSetupModal(message) {
     }
 }
 
-// Starfield Logic (ported from original)
 function initStarfield() {
     const canvas = document.getElementById('starfield');
+    if (!canvas) return;
     const ctx = canvas.getContext('2d');
     let width, height, stars = [];
-
     function resize() {
         width = window.innerWidth;
         height = window.innerHeight;
@@ -234,7 +207,6 @@ function initStarfield() {
         canvas.height = height;
         genStars();
     }
-
     function genStars() {
         stars = [];
         for (let i = 0; i < 200; i++) {
@@ -247,10 +219,9 @@ function initStarfield() {
             });
         }
     }
-
     function animate() {
         ctx.clearRect(0, 0, width, height);
-        ctx.fillStyle = '#000';
+        ctx.fillStyle = '#fff';
         stars.forEach(s => {
             ctx.globalAlpha = s.opacity;
             ctx.beginPath();
@@ -261,7 +232,6 @@ function initStarfield() {
         });
         requestAnimationFrame(animate);
     }
-
     window.addEventListener('resize', resize);
     resize();
     animate();
@@ -269,9 +239,8 @@ function initStarfield() {
 
 async function init() {
     await loadReligions();
-    // No need to manually call initStarfield if it's called inside loadReligions or at top level
-    // But let's be consistent with original
+    setupEventListeners();
     initStarfield();
 }
 
-init();
+document.addEventListener('DOMContentLoaded', init);
