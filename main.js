@@ -163,8 +163,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (data.url) {
                     alert(`SUCCESS! Your app is live at: https://${data.url}`);
                     window.open(`https://${data.url}`, '_blank');
+                } else if (data.error === 'CONFIGURATION_REQUIRED') {
+                    showSetupModal(data.message);
                 } else {
-                    throw new Error(data.error || 'Deployment failed');
+                    throw new Error(data.message || data.error || 'Deployment failed');
                 }
             } catch (err) {
                 console.error(err);
